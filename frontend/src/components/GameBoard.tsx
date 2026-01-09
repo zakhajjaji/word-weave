@@ -86,7 +86,6 @@ return  (
             )}
           </div>
 
-
       {/* Selected Word Display */}
       {selectedTiles.size > 0 && (
         <div className="flex flex-col items-center gap-2">
