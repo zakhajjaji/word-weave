@@ -1,22 +1,32 @@
-'use client'
-
 function Instructions() {
   return (
-    <div className="w-full max-w-xl mx-auto my-12 bg-gray-800 rounded-xl shadow-2xl p-8 flex flex-col items-center gap-6">
-      <h1 className="text-3xl md:text-4xl font-extrabold text-blue-400 mb-2 tracking-tight drop-shadow">
-        How to Play Word Weave
-      </h1>
-      <p className="text-lg text-gray-200 text-center leading-relaxed">
-        Welcome to <span className="font-bold text-blue-400">Word Weave!</span> Your goal is to form as many words as possible from the letter grid. Click on letter tiles to select them and build your word.<br /><br />
-        <ul className="list-disc pl-8 text-left my-3 space-y-2">
-          <li>You can select letters by clicking on the tiles.</li>
-          <li>Selected letters must be adjacent (including diagonally).</li>
-          <li>Form a valid word, then hit <span className="font-semibold text-green-400">Submit Word</span>!</li>
-          <li>Use the <span className="font-semibold text-gray-300">Clear</span> button to start your selection over.</li>
-          <li>Challenge yourself: try to find longer and more creative words for higher scores.</li>
+    <div className="w-full bg-gray-800 rounded-xl shadow-2xl p-6 flex flex-col gap-4">
+      <h2 className="text-2xl font-extrabold text-blue-400 mb-2 tracking-tight">
+        How to Play
+      </h2>
+      
+      <div className="text-gray-200 text-sm leading-relaxed space-y-3">
+        <p>
+          Welcome to <span className="font-bold text-blue-400">Word Weave!</span> Your goal is to form as many words as possible from the letter grid.
+        </p>
+        
+        <ul className="list-disc pl-5 space-y-2 text-gray-300">
+          <li>Click on letter tiles to select them</li>
+          <li>Selected letters must be adjacent (including diagonally)</li>
+          <li>Form a valid word, then hit <span className="font-semibold text-green-400">Submit Word</span></li>
+          <li>Use <span className="font-semibold text-gray-300">Clear</span> to reset your selection</li>
+          <li>Longer words score higher points</li>
         </ul>
-        Good luck and have fun weaving words!
-      </p>
+      </div>
+
+      <div className="mt-4 pt-4 border-t border-gray-700 flex flex-col gap-2">
+        <button className="w-full px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg transition-colors text-sm text-left">
+          How to calculate points?
+        </button>
+        <button className="w-full px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg transition-colors text-sm text-left">
+          How to play with friends?
+        </button>
+      </div>
     </div>
   )
 }

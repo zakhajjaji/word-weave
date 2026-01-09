@@ -56,10 +56,10 @@ const clearSelection = () => {
 }
 
 return  (
-        <div className="flex flex-col items-center gap-4">
+        <div className="flex flex-col items-center gap-6 w-full">
           {/* Game Board Grid */}
           <div 
-            className="grid gap-2 p-4 bg-gray-800 rounded-lg"
+            className="grid gap-2 p-4 bg-gray-800 rounded-xl shadow-2xl w-full"
             style={{ gridTemplateColumns: `repeat(${size}, minmax(0, 1fr))` }}
           >
             {board.map((row, rowIndex) =>
@@ -88,14 +88,14 @@ return  (
 
       {/* Selected Word Display */}
       {selectedTiles.size > 0 && (
-        <div className="flex flex-col items-center gap-2">
-          <div className="text-xl font-semibold">
-            Word: <span className="text-blue-400">{getSelectedWord()}</span>
+        <div className="flex flex-col items-center gap-3 w-full bg-gray-800 rounded-xl p-4">
+          <div className="text-lg font-semibold text-gray-300">
+            Current Word: <span className="text-blue-400 font-bold text-xl">{getSelectedWord()}</span>
           </div>
-          <div className="flex gap-2">
+          <div className="flex gap-3 w-full">
             <button
               onClick={clearSelection}
-              className="px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg transition-colors"
+              className="flex-1 px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg transition-colors font-medium"
             >
               Clear
             </button>
@@ -106,7 +106,7 @@ return  (
                 // TODO: Call API to validate word
                 clearSelection()
               }}
-              className="px-4 py-2 bg-green-600 hover:bg-green-700 rounded-lg transition-colors"
+              className="flex-1 px-4 py-2 bg-green-600 hover:bg-green-700 rounded-lg transition-colors font-medium"
             >
               Submit Word
             </button>
