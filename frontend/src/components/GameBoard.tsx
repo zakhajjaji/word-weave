@@ -2,9 +2,12 @@ import { useState } from 'react'
 
 interface GameBoardProps {
     size: number
+    onWordSubmit?: (word: string) => void
+    onClearSelection?: () => void
+    shuffleBoard?: () => void
 }
 
-function GameBoard({ size = 4 }: GameBoardProps){
+function GameBoard({ size = 4, onWordSubmit, onClearSelection, shuffleBoard }: GameBoardProps){
     const generateBoard = (size: number): string[][] => {
        const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
        const board: string[][] = []
@@ -28,6 +31,8 @@ function GameBoard({ size = 4 }: GameBoardProps){
 
 const [board] = useState<string[][]>(generateBoard(size))
 const [selectedTiles, setSelectedTiles] = useState<Set<string>>(new Set())
+const [currentWord, setCurrentWord] = useState<string>('')
+const [isValidWord, setIsValidWord] = useState<boolean>(false)
 
 const handleTileClick = (row: number, col: number) => {
     const tileKey = `${row}-${col}`;
@@ -102,11 +107,13 @@ return  (
             <button
               onClick={() => {
                 const word = getSelectedWord()
-                console.log('Submitting word:', word)
-                // TODO: Call API to validate word
+                if (word.length >= 3) { // Minimum word length
+                  onWordSubmit?.(word)
+                }
                 clearSelection()
               }}
-              className="flex-1 px-4 py-2 bg-green-600 hover:bg-green-700 rounded-lg transition-colors font-medium"
+              className="flex-1 px-4 py-2 bg-green-600 hover:bg-green-700 rounded-lg transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+              disabled={getSelectedWord().length < 3}
             >
               Submit Word
             </button>
