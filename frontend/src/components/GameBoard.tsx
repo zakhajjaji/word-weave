@@ -4,10 +4,10 @@ interface GameBoardProps {
     size: number
     onWordSubmit?: (word: string) => void
     onClearSelection?: () => void
-    shuffleBoard?: () => void
+    onShuffleBoard?: () => void
 }
 
-function GameBoard({ size = 4, onWordSubmit, onClearSelection, shuffleBoard }: GameBoardProps){
+function GameBoard({ size = 4, onWordSubmit, onClearSelection, onShuffleBoard }: GameBoardProps){
     const generateBoard = (size: number): string[][] => {
        const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
        const board: string[][] = []
@@ -29,10 +29,8 @@ function GameBoard({ size = 4, onWordSubmit, onClearSelection, shuffleBoard }: G
        return board
     }; 
 
-const [board] = useState<string[][]>(generateBoard(size))
+const [board, setBoard] = useState<string[][]>(generateBoard(size))
 const [selectedTiles, setSelectedTiles] = useState<Set<string>>(new Set())
-const [currentWord, setCurrentWord] = useState<string>('')
-const [isValidWord, setIsValidWord] = useState<boolean>(false)
 
 const handleTileClick = (row: number, col: number) => {
     const tileKey = `${row}-${col}`;
@@ -57,11 +55,25 @@ const getSelectedWord = (): string => {
 }
 
 const clearSelection = () => {
+  onClearSelection?.();
     setSelectedTiles(new Set());
+}
+
+const handleShuffle = () => {
+  setBoard(generateBoard(size))
+  setSelectedTiles(new Set())
+  onShuffleBoard?.()
 }
 
 return  (
         <div className="flex flex-col items-center gap-6 w-full">
+          {/* Shuffle Button */}
+          <button
+            onClick={handleShuffle}
+            className="px-6 py-2 bg-green-600 hover:bg-green-700 rounded-lg transition-colors font-medium text-white shadow-lg"
+          >
+            Shuffle Board
+          </button>
           {/* Game Board Grid */}
           <div 
             className="grid gap-2 p-4 bg-gray-800 rounded-xl shadow-2xl w-full"
